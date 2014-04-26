@@ -1,4 +1,4 @@
-package com.luxoft.performance.latency;
+package com.luxoft.lab8.latency;
 
 /**
  * Created by alexsmall on 25.04.14.

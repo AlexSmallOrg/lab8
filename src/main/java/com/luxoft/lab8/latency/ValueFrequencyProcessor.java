@@ -1,4 +1,4 @@
-package com.luxoft.performance.latency;
+package com.luxoft.lab8.latency;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,10 +11,15 @@ public class ValueFrequencyProcessor implements AbstractProcessor<String> {
         if (freq == null) {
             freq = "0";
         }
-        int freqInt = Integer.valueOf(freq);
-        freqInt++;
-        frequencies.put(String.valueOf(value),String.valueOf(freqInt));
-        return String.valueOf(freqInt);
+        long freqLong = Long.valueOf(freq);
+        freqLong++;
+        frequencies.put(String.valueOf(value),String.valueOf(freqLong));
+//        try {
+//            Thread.sleep(0,10);
+//        } catch (InterruptedException e) {
+//            //skip
+//        }
+        return String.valueOf(freqLong);
     }
 }
 

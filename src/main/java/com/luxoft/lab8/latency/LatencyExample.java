@@ -1,4 +1,4 @@
-package com.luxoft.performance.latency;
+package com.luxoft.lab8.latency;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
