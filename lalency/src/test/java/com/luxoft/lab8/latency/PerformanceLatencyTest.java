@@ -1,5 +1,7 @@
 package com.luxoft.lab8.latency;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Random;
@@ -13,9 +15,18 @@ import java.util.Random;
  */
 public class PerformanceLatencyTest {
 
-    private static final int MAX_CYCLES = 10000000;
-    private static final int DISPLAY_TIME = 100000;
+    private static final int MAX_CYCLES = 100000000;
+    private static final int DISPLAY_TIME = 10000000;
     private Object result;
+    private StringBuilder stringBuilder =new StringBuilder(1000000);
+    @Before
+    public void init(){
+        stringBuilder=new StringBuilder(1000000);
+    }
+    @After
+    public void result(){
+        System.out.println(stringBuilder.toString());
+    }
 
     @Test
     public void testHashMapString() {
@@ -45,7 +56,7 @@ public class PerformanceLatencyTest {
             if (i % DISPLAY_TIME == 0) {
                 maxTime = (avgTime > maxTime) ? avgTime : maxTime;
                 minTime = (avgTime < minTime) ? avgTime : minTime;
-                System.out.printf("Time: \t avg: %1$8dns\t min: %2$8dns\t max: %3$8dns\n", avgTime, minTime, maxTime);
+                stringBuilder.append(String.format("Time: \t avg: %1$8dns\t min: %2$8dns\t max: %3$8dns\n", avgTime, minTime, maxTime));
                 avgTime = curTime;
             }
         }
@@ -79,7 +90,7 @@ public class PerformanceLatencyTest {
             if (i % DISPLAY_TIME == 0) {
                 maxTime = (avgTime > maxTime) ? avgTime : maxTime;
                 minTime = (avgTime < minTime) ? avgTime : minTime;
-                System.out.printf("Time: \t avg: %1$8dns\t min: %2$8dns\t max: %3$8dns\n", avgTime, minTime, maxTime);
+                stringBuilder.append(String.format("Time: \t avg: %1$8dns\t min: %2$8dns\t max: %3$8dns\n", avgTime, minTime, maxTime));
                 avgTime = curTime;
             }
         }
@@ -113,7 +124,7 @@ public class PerformanceLatencyTest {
             if (i % DISPLAY_TIME == 0) {
                 maxTime = (avgTime > maxTime) ? avgTime : maxTime;
                 minTime = (avgTime < minTime) ? avgTime : minTime;
-                System.out.printf("Time: \t avg: %1$8dns\t min: %2$8dns\t max: %3$8dns\n", avgTime, minTime, maxTime);
+                stringBuilder.append(String.format("Time: \t avg: %1$8dns\t min: %2$8dns\t max: %3$8dns\n", avgTime, minTime, maxTime));
                 avgTime = curTime;
             }
         }
@@ -139,14 +150,14 @@ public class PerformanceLatencyTest {
         for (int i = 1; i < MAX_CYCLES; i++) {
             value = i % 255;
             beforeTime = System.nanoTime();
-            result = processor.process(value);
+            //Object result = processor.process(value);
             afterTime = System.nanoTime();
             curTime = afterTime - beforeTime;
-            avgTime = (avgTime + curTime) / 2;
+            avgTime = (avgTime + curTime) / 2L;
             if (i % DISPLAY_TIME == 0) {
                 maxTime = (avgTime > maxTime) ? avgTime : maxTime;
                 minTime = (avgTime < minTime) ? avgTime : minTime;
-                System.out.printf("Time: \t avg: %1$8dns\t min: %2$8dns\t max: %3$8dns\n", avgTime, minTime, maxTime);
+                stringBuilder.append(String.format("Time: \t avg: %1$8dns\t min: %2$8dns\t max: %3$8dns\n", avgTime, minTime, maxTime));
                 avgTime = curTime;
             }
         }
